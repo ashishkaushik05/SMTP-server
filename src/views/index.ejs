@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMTP Server - Email List</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SMTP Server - Email List</h1>
+      <p>Total Emails: <%= totalEmails %></p>
+    </header>
+    
+    <main>
+      <% if (emails.length === 0) { %>
+        <div class="no-emails">
+          <p>No emails found.</p>
+        </div>
+      <% } else { %>
+        <table class="email-table">
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>To</th>
+              <th>Date</th>
+              <th>Size</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% emails.forEach(email => { %>
+              <tr>
+                <td><%= email.from %></td>
+                <td><%= email.to.join(', ') %></td>
+                <td><%= new Date(email.receivedAt).toLocaleString() %></td>
+                <td><%= (email.size / 1024).toFixed(2) %> KB</td>
+                <td>
+                  <a href="/email/<%= email._id %>" class="btn">View</a>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+        
+        <div class="pagination">
+          <% if (page > 1) { %>
+            <a href="/?page=<%= page - 1 %>" class="btn">Previous</a>
+          <% } %>
+          
+          <span>Page <%= page %> of <%= totalPages %></span>
+          
+          <% if (page < totalPages) { %>
+            <a href="/?page=<%= page + 1 %>" class="btn">Next</a>
+          <% } %>
+        </div>
+      <% } %>
+    </main>
+    
+    <footer>
+      <p>&copy; <%= new Date().getFullYear() %> SMTP Server</p>
+    </footer>
+  </div>
+</body>
+</html> 

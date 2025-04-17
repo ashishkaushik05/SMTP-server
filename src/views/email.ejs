@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Details</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Email Details</h1>
+      <a href="/" class="btn">Back to List</a>
+    </header>
+    
+    <main>
+      <div class="email-details">
+        <div class="email-header">
+          <div class="email-field">
+            <strong>From:</strong>
+            <span><%= email.from %></span>
+          </div>
+          
+          <div class="email-field">
+            <strong>To:</strong>
+            <span><%= email.to.join(', ') %></span>
+          </div>
+          
+          <div class="email-field">
+            <strong>Received:</strong>
+            <span><%= new Date(email.receivedAt).toLocaleString() %></span>
+          </div>
+          
+          <div class="email-field">
+            <strong>Size:</strong>
+            <span><%= (email.size / 1024).toFixed(2) %> KB</span>
+          </div>
+        </div>
+        
+        <div class="email-content">
+          <h2>Raw Email Content</h2>
+          <pre class="raw-email"><%= email.raw %></pre>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; <%= new Date().getFullYear() %> SMTP Server</p>
+    </footer>
+  </div>
+</body>
+</html> 

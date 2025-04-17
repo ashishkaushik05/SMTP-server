@@ -1,0 +1,28 @@
+# Environment variables and secrets
+.env
+*.pem
+*.key
+*.crt
+my-mail-server.pem
+config/ssl/
+config/dkim/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+storage/
+emails/
+
+# Dependencies
+node_modules/
+
+# Temporary files
+tmp/
+temp/
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
